@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Без буклета — университеты, как они есть</title>
+<meta name="description" content="Видеоподкаст, в котором студенты честно рассказывают о своих университетах: поступление, учёба, жизнь и минусы. Первый выпуск — HITSZ, Шэньчжэнь.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --ink: #14151A;
+    --marker: #FFE14D;
+    --stamp: #FF4B2B;
+    --graphite: #6B6B70;
+    --rule: #DDD5C5;
+    --card: #FBF8F2;
+    --display: "Unbounded", "Arial Black", "Segoe UI", sans-serif;
+    --text: "Golos Text", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--text);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; border-top: 1px solid var(--rule); }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(34px, 7vw, 76px); font-weight: 900; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(26px, 4.2vw, 44px); font-weight: 900; margin-bottom: 28px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  p { margin: 0 0 14px; }
+  mark { background: var(--marker); color: inherit; padding: 0 .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .mono { font-family: var(--mono); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--graphite); }
+
+  /* Шапка */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+  .logo { font-family: var(--display); font-weight: 900; font-size: 15px; text-decoration: none; letter-spacing: .02em; }
+  .logo span { color: var(--stamp); }
+  .nav nav { display: flex; gap: 22px; font-size: 15px; }
+  .nav nav a { text-decoration: none; }
+  .nav nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Кнопки */
+  .btn {
+    display: inline-block; cursor: pointer;
+    font-family: var(--display); font-weight: 700; font-size: 14px;
+    padding: 15px 22px; border: 2px solid var(--ink); border-radius: 0;
+    background: var(--ink); color: var(--paper); text-decoration: none;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--stamp); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--stamp); outline-offset: 2px;
+  }
+
+  /* Первый экран */
+  .hero { padding: 64px 0 80px; border-top: 0; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center; }
+  .hero p.lead { font-size: 20px; max-width: 34em; margin: 24px 0 30px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .stamp {
+    justify-self: center;
+    font-family: var(--display); font-weight: 900; text-align: center;
+    font-size: clamp(26px, 4vw, 44px); line-height: 1;
+    color: var(--stamp);
+    border: 6px solid var(--stamp); border-radius: 10px;
+    padding: 22px 26px; transform: rotate(-6deg);
+    box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 5px var(--stamp);
+    opacity: .92;
+  }
+  .stamp small { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; margin-top: 12px; font-weight: 700; }
+
+  /* Сетки и карточки */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--rule); padding: 24px; }
+  .card .num { font-family: var(--mono); font-weight: 700; color: var(--stamp); font-size: 14px; display: block; margin-bottom: 12px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Тайм-коды */
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .timeline li { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .timeline time { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; color: var(--graphite); padding-top: 2px; }
+  .timeline b { font-weight: 600; }
+
+  /* Анонс */
+  .episode { background: var(--ink); color: var(--paper); border-top: 0; }
+  .episode .mono { color: var(--marker); }
+  .episode h2 { margin-top: 10px; }
+  .episode .card { background: transparent; border-color: #3a3b42; color: var(--paper); }
+  .passport { font-family: var(--mono); font-size: 14px; width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .passport td { padding: 9px 0; border-bottom: 1px dashed #3a3b42; vertical-align: top; }
+  .passport td:first-child { color: #a9a9b0; width: 45%; padding-right: 12px; }
+  .date-badge { display: inline-block; background: var(--marker); color: var(--ink); font-family: var(--display); font-weight: 900; padding: 8px 14px; font-size: 18px; margin: 6px 0 22px; }
+
+  /* Принципы */
+  .rules { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; }
+  .rules li { padding-left: 30px; position: relative; }
+  .rules li::before { content: "✕"; position: absolute; left: 0; top: 0; color: var(--stamp); font-weight: 700; }
+  .rules li.yes::before { content: "✓"; color: var(--ink); }
+
+  /* Формы */
+  form { display: grid; gap: 14px; }
+  label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+  input, select, textarea {
+    font: inherit; font-size: 16px; font-weight: 400;
+    padding: 12px 14px; border: 2px solid var(--ink); border-radius: 0;
+    background: #fff; color: var(--ink); width: 100%;
+  }
+  textarea { min-height: 96px; resize: vertical; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 14px; color: var(--graphite); }
+  .check input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
+  .form-note { font-size: 14px; min-height: 22px; margin: 0; }
+  .form-note.ok { color: #1c6b2f; font-weight: 600; }
+  .form-note.err { color: #b3261e; font-weight: 600; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 12px; background: var(--marker); padding: 3px 8px; margin-bottom: 14px; letter-spacing: .06em; text-transform: uppercase; }
+
+  footer { border-top: 2px solid var(--ink); padding: 32px 0 48px; font-size: 14px; color: var(--graphite); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 52px 0; }
+    .hero { padding: 40px 0 56px; }
+    .hero-grid, .grid3, .grid2, .rules { grid-template-columns: 1fr; }
+    .stamp { justify-self: start; margin-top: 8px; }
+    .nav nav { display: none; }
+    .timeline li { grid-template-columns: 1fr; gap: 2px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top">БЕЗ <span>БУКЛЕТА</span></a>
+    <nav aria-label="Разделы">
+      <a href="#about">О проекте</a>
+      <a href="#episode">Первый выпуск</a>
+      <a href="#hero-form">Стать героем</a>
+      <a href="#partners">Партнёрам</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="mono">Видеоподкаст · один вуз — один выпуск</p>
+        <h1>Университеты, <mark>как они есть</mark></h1>
+        <p class="lead">Приходим на кампус и в общежитие. Три студента из разных стран рассказывают, как поступить, как учиться и что на самом деле не так. Всё, чего нет в рекламном буклете.</p>
+        <div class="cta-row">
+          <a class="btn" href="#episode">Первый выпуск — 15 ноября</a>
+          <a class="btn ghost" href="#hero-form">Хочу стать героем</a>
+        </div>
+      </div>
+      <div class="stamp" aria-hidden="true">БЕЗ<br>БУКЛЕТА<small>МИНУСЫ НЕ ВЫРЕЗАЕМ</small></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>Что это за проект</h2>
+      <div class="grid3">
+        <div class="card">
+          <span class="num">01 / БИБЛИОТЕКА</span>
+          <h3>Гуглишь вуз — находишь выпуск</h3>
+          <p>Каждый университет разобран по одной схеме: поступление, учёба, быт, деньги, минусы. Выпуски можно сравнивать между собой.</p>
+        </div>
+        <div class="card">
+          <span class="num">02 / ТРИ ГОЛОСА</span>
+          <h3>Не один блогер, а трое студентов</h3>
+          <p>Разные страны, специальности и взгляды. Один отвечает за поступление, второй — за учёбу, третий — за то, о чём молчат.</p>
+        </div>
+        <div class="card">
+          <span class="num">03 / ЧЕСТНО</span>
+          <h3>Минусы — обязательный блок</h3>
+          <p>Вузы не платят за выпуски о себе. Реклама всегда помечена. Партнёры не влияют на содержание.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="for">
+    <div class="wrap">
+      <h2>Для кого</h2>
+      <div class="grid3">
+        <div class="card">
+          <h3>Абитуриентам</h3>
+          <p>Пошагово о поступлении и грантах, реальное расписание, общежитие изнутри и честный ответ на вопрос «кому сюда не надо».</p>
+        </div>
+        <div class="card">
+          <h3>Родителям</h3>
+          <p>Сколько стоит месяц жизни, где ребёнок будет жить и есть, насколько это безопасно и что будет с дипломом дома.</p>
+        </div>
+        <div class="card">
+          <h3>Студентам</h3>
+          <p>Расскажи о своём университете так, как хотел бы услышать сам перед поступлением. И помоги тем, кто выбирает сейчас.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="format">
+    <div class="wrap">
+      <h2>Как устроен выпуск</h2>
+      <ol class="timeline">
+        <li><time>00:00–01:30</time><div><b>Паспорт вуза.</b> Город, стоимость, гранты, язык обучения — за 40 секунд.</div></li>
+        <li><time>05:00–17:00</time><div><b>Поступление.</b> Документы, сроки, экзамены, ошибки новичков.</div></li>
+        <li><time>17:00–24:00</time><div><b>Рум-тур.</b> Комната в общежитии, правила, цена. Чек месяца.</div></li>
+        <li><time>24:00–37:00</time><div><b>Учёба.</b> Расписание, преподаватели, язык, экзамены, нагрузка.</div></li>
+        <li><time>37:00–43:00</time><div><b>Обед на 20 юаней.</b> Столовая, цены и разговор о деньгах.</div></li>
+        <li><time>43:00–54:00</time><div><b>Вырезано из буклета.</b> Пять минусов, о которых не пишут.</div></li>
+        <li><time>54:00–60:00</time><div><b>Зачётка.</b> Студенты ставят вузу оценки. Кому подойдёт, а кому нет.</div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="episode" class="episode">
+    <div class="wrap grid2">
+      <div>
+        <p class="mono">Выпуск № 1 · анонс</p>
+        <h2>HITSZ: Харбинский политех в Шэньчжэне</h2>
+        <div class="date-badge">15 ноября 2026</div>
+        <p>Один из сильнейших инженерных вузов Китая — в самом технологичном городе страны. Три иностранных студента показывают кампус и общежитие и отвечают на неудобные вопросы.</p>
+        <p>Узнаешь: как поступить и получить грант, на каком языке на самом деле учат, сколько стоит месяц жизни в Шэньчжэне и кому сюда лучше не ехать.</p>
+        <div class="cta-row" style="margin-top:22px">
+          <a class="btn" style="background:var(--marker);color:var(--ink);border-color:var(--marker)" href="#" data-link="telegram">Напомнить в Telegram</a>
+        </div>
+      </div>
+      <div class="card">
+        <p class="mono">Паспорт вуза</p>
+        <table class="passport">
+          <tr><td>Вуз</td><td>Harbin Institute of Technology, Shenzhen</td></tr>
+          <tr><td>Город</td><td>Шэньчжэнь, Китай</td></tr>
+          <tr><td>Профиль</td><td>Инженерия, ИТ, экономика</td></tr>
+          <tr><td>Герои</td><td>3 студента 3–4 курса</td></tr>
+          <tr><td>Хронометраж</td><td>≈ 60 минут</td></tr>
+          <tr><td>Дальше</td><td>SUSTech · CUHK-Shenzhen · Сунь Ятсен</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <h2>Наши правила</h2>
+      <ul class="rules">
+        <li class="yes">Говорим со студентами 3–4 курса — им есть что сравнить.</li>
+        <li>Вузы не платят за выпуски о себе.</li>
+        <li class="yes">Показываем цены, расписания и комнаты — не пересказываем.</li>
+        <li>Партнёры не видят и не правят блок минусов.</li>
+        <li class="yes">Герой смотрит свои фрагменты до публикации.</li>
+        <li>Без политики и перехода на личности: критикуем условия, а не людей.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="hero-form">
+    <div class="wrap grid2">
+      <div>
+        <span class="tag">Кастинг</span>
+        <h2>Хочу стать героем выпуска</h2>
+        <p>Ищем студентов 3–4 курса бакалавриата и магистрантов любых университетов. Сейчас в приоритете Шэньчжэнь, Гуанчжоу и Гонконг — но заявки принимаем из любой страны.</p>
+        <p>Съёмка занимает один день. Говорить можно на русском или английском. Перед публикацией ты увидишь все свои фрагменты.</p>
+      </div>
+      <form id="form-hero" class="card" novalidate>
+        <label>Имя
+          <input name="name" required autocomplete="name">
+        </label>
+        <label>Университет и город
+          <input name="university" required placeholder="Например: SUSTech, Шэньчжэнь">
+        </label>
+        <div class="grid2" style="gap:14px">
+          <label>Курс
+            <select name="year" required>
+              <option value="">Выбери</option>
+              <option>3 курс бакалавриата</option>
+              <option>4 курс бакалавриата</option>
+              <option>Магистратура</option>
+              <option>Другое</option>
+            </select>
+          </label>
+          <label>Откуда ты
+            <input name="country" required placeholder="Страна">
+          </label>
+        </div>
+        <label>О чём расскажешь лучше всего
+          <select name="role" required>
+            <option value="">Выбери</option>
+            <option>Поступление</option>
+            <option>Учёба и преподаватели</option>
+            <option>Минусы и то, о чём не пишут</option>
+          </select>
+        </label>
+        <label>Контакт: Telegram, WeChat или почта
+          <input name="contact" required>
+        </label>
+        <label>Один минус твоего вуза, о котором не пишут
+          <textarea name="minus"></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="consent" required><span>Согласен(на) на обработку этих данных для связи по проекту.</span></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <p class="form-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap grid2">
+      <div>
+        <span class="tag">Партнёрам</span>
+        <h2>Аудитория, которая прямо сейчас выбирает вуз</h2>
+        <p>Нас смотрят абитуриенты из России, Казахстана, Узбекистана, Кыргызстана и их родители — в момент, когда они принимают решение.</p>
+        <p><b>Кому это подходит:</b> агентствам по поступлению, школам китайского языка, репетиторам, визовым и страховым сервисам, сервисам аренды жилья, локальным бизнесам у кампусов.</p>
+        <p><b>Форматы:</b> интеграция, партнёр выпуска или сезона, спецвыпуск, постоянная ссылка под выпуском, реферальная модель.</p>
+        <p class="mono" style="margin-top:18px">Условие одно: реклама помечается, содержание выпуска остаётся за редакцией.</p>
+      </div>
+      <form id="form-partner" class="card" novalidate>
+        <label>Компания
+          <input name="company" required autocomplete="organization">
+        </label>
+        <label>Контактное лицо
+          <input name="name" required autocomplete="name">
+        </label>
+        <label>Тип партнёра
+          <select name="type" required>
+            <option value="">Выберите</option>
+            <option>Агентство по поступлению</option>
+            <option>Школа китайского языка</option>
+            <option>Репетитор / онлайн-школа</option>
+            <option>Визы, страхование, документы</option>
+            <option>Жильё и аренда</option>
+            <option>Локальный бизнес</option>
+            <option>Другое</option>
+          </select>
+        </label>
+        <label>Почта или Telegram
+          <input name="contact" required>
+        </label>
+        <label>Что вам интересно
+          <textarea name="message" placeholder="Формат, сроки, вопросы"></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="consent" required><span>Согласен(на) на обработку этих данных для связи по проекту.</span></label>
+        <button class="btn" type="submit">Запросить медиакит</button>
+        <p class="form-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 «Без буклета». Независимый студенческий медиапроект.</span>
+    <span><a href="#" data-link="telegram">Telegram</a> · <a href="#" data-link="youtube">YouTube</a> · <a href="#" data-link="vk">VK Видео</a></span>
+  </div>
+</footer>
+
+<script>
+  /* ===== Настройки: заполни перед публикацией ===== */
+  var CONFIG = {
+    // Адрес обработчика форм (Formspree, Tally, свой сервер). Пока пусто — заявка откроется в почтовой программе.
+    formEndpoint: "",
+    contactEmail: "hello@example.com",
+    links: { telegram: "", youtube: "", vk: "" }
+  };
+
+  // Ссылки на соцсети
+  document.querySelectorAll("[data-link]").forEach(function (a) {
+    var url = CONFIG.links[a.dataset.link];
+    if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; }
+    else { a.addEventListener("click", function (e) { e.preventDefault(); alert("Ссылка появится ближе к премьере."); }); }
+  });
+
+  function collect(form) {
+    var data = {};
+    new FormData(form).forEach(function (v, k) { if (k !== "consent") data[k] = String(v).trim(); });
+    return data;
+  }
+
+  function handle(formId, subject) {
+    var form = document.getElementById(formId);
+    var note = form.querySelector(".form-note");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      note.className = "form-note";
+      if (!form.checkValidity()) {
+        note.textContent = "Заполни обязательные поля и отметь согласие.";
+        note.classList.add("err");
+        var bad = form.querySelector(":invalid");
+        if (bad) bad.focus();
+        return;
+      }
+      var data = collect(form);
+      data.form = subject;
+
+      if (CONFIG.formEndpoint) {
+        note.textContent = "Отправляем…";
+        fetch(CONFIG.formEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        }).then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          form.reset();
+          note.textContent = "Заявка отправлена. Ответим в течение трёх дней.";
+          note.classList.add("ok");
+        }).catch(function () {
+          note.textContent = "Не получилось отправить. Напиши нам на " + CONFIG.contactEmail;
+          note.classList.add("err");
+        });
+      } else {
+        // Запасной вариант без сервера: письмо в почтовой программе
+        var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
+        window.location.href = "mailto:" + CONFIG.contactEmail +
+          "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        note.textContent = "Открыли письмо в твоей почтовой программе — осталось нажать «Отправить».";
+        note.classList.add("ok");
+      }
+    });
+  }
+
+  handle("form-hero", "Заявка героя — Без буклета");
+  handle("form-partner", "Заявка партнёра — Без буклета");
+</script>
+</body>
+</html>
